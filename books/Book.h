@@ -13,7 +13,7 @@ private:
   int isbn;
   int id;
   float cost;
-  string status;
+  char status;
 
 public:
   // Constructor -- status defaults to "In"
@@ -30,8 +30,11 @@ public:
   int GetId();
   void SetCost(float cost);
   float GetCost();
-  void SetStatus(string status);
-  string GetStatus();
+  void SetStatus(char status);
+  char GetStatus();
+
+  // Helper-Print functions
+  string statusToString(char status);
   void PrintBookDetails();
 };
 
