@@ -7,9 +7,10 @@
 using namespace std;
 struct status_t
 {
-  char currentStatus;
+  char current;
   bool rechecked;
 };
+
 class Loan
 {
 private:
@@ -24,9 +25,9 @@ public:
 
   void SetLoanID(int i);
   int GetLoanID();
-  void SetBookID(int i);
-  int GetBookID();
   void SetPatronID(int i);
+  int GetPatronID();
+  void SetBookID(int i);
   int GetBookID();
   void SetDueDate(time_t t);
   time_t GetDueDate();

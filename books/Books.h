@@ -15,6 +15,7 @@ private:
   bool bookFound = false;
 
 public:
+  Books();
   // Edit bookList functions
   void AddBook();
   void EditBook(Book book, char key);
