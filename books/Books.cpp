@@ -66,7 +66,7 @@ void Books::EditBook(vector<Book>::iterator it, char key)
     oi = it->GetId();
     cout << "Enter new ID: " << endl;
     cin >> ni;
-    it->id = ni;
+    it->SetId(ni) ;
     cout << "ID changed from " << oi << " to " << ni << endl;
 
   // Edit Cost
