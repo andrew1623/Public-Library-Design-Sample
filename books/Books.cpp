@@ -139,7 +139,7 @@ vector<Book>::iterator Books::GetBookByName(string name)
 void Books::PrintBookList()
 {
   cout << "\nPRINT ALL BOOKS" << endl;
-  for (auto &book : bookList)
+  for (Book &book : bookList)
   {
     cout << "----------" << endl;
     book.PrintBookDetails();

@@ -22,5 +22,6 @@ public:
   float GetBalance();
   void SetBooksOut(int i);
   int GetBooksOut();
+  void PrintPatronDetails();
 };
 #endif

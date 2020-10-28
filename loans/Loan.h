@@ -1,7 +1,7 @@
 #ifndef LOAN_H
 #define LOAN_H
 
-#include <time.h>
+#include <ctime>
 #include <string>
 
 using namespace std;
@@ -33,7 +33,6 @@ public:
   time_t GetDueDate();
   void SetStatus(char stat, bool recheck);
   status_t GetStatus();
-  void PrintLoan();
 };
 
 #endif

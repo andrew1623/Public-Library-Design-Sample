@@ -10,18 +10,19 @@ class Patrons
 {
 private:
   int count;
+  bool patronFound;
   vector<Patron> patronsList;
 
 public:
   Patrons();
-  void AddPatron(Patron p);
-  void EditPatron(int pID);
-  void DeletePatron(int pID);
+  void AddPatron();
+  void EditPatron(vector<Patron>::iterator it, char key);
+  void DeletePatron(vector<Patron>::iterator it);
   vector<Patron>::iterator FindPatron(int pID);
   vector<Patron>::iterator FindPatron(string name);
   void PrintPatronList();
-  void PrintPatron(int pID);
-  void PayFines(int pID);
+  void PrintPatron(vector<Patron>::iterator it);
+  void PayFines(vector<Patron>::iterator it, float amt);
 };
 
 #endif;
