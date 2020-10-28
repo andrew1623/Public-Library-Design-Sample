@@ -56,18 +56,22 @@ void Patrons::EditPatron(vector<Patron>::iterator it, char key)
     cin >> nf;
     it->SetBalance(nf);
     cout << "Balance changed from " << of << " to " << nf << endl;
+
+  // Edit booksOut
+  case 'o':
+    oi = it->GetBooksOut();
+    cout << "Enter new # of books out: " << endl;
+    cin >> ni;
+    it->SetBooksOut(ni);
+    cout << "# of books checked out is now: " << ni << endl;
   }
-// Edit booksOut
-case 'o':
-  oi = it->GetBooksOut();
-  cout << "Enter new # of books out: " << endl;
-  cin >> ni;
-  it->SetBooksOut(ni);
-  cout << "# of books checked out is now: " << ni << endl;
 }
 void Patrons::DeletePatron(vector<Patron>::iterator it)
 {
-  patronsList.erase(it);
+  if (patronFound)
+  {
+    patronsList.erase(it);
+  }
 }
 vector<Patron>::iterator Patrons::FindPatron(int pID)
 {

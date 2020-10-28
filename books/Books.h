@@ -18,9 +18,8 @@ public:
   Books();
   // Edit bookList functions
   void AddBook();
-  void EditBook(Book book, char key);
-  void DeleteBook(string name);
-  void DeleteBook(int id);
+  void EditBook(vector<Book>::iterator, char key);
+  void DeleteBook(vector<Book>::iterator it);
 
   // Search/Find Book in booksList
   // - returns an iterator

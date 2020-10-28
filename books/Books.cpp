@@ -28,7 +28,7 @@ void Books::AddBook()
 }
 
 // NOTE: This function does not edit book.status
-void Books::EditBook(Book book, char key)
+void Books::EditBook(vector<Book>::iterator it, char key)
 {
   string ns, os;
   int ni, oi;
@@ -37,61 +37,51 @@ void Books::EditBook(Book book, char key)
   {
   // Edit Author
   case 'a':
-    os = book.GetAuthor();
+    os = it->GetAuthor();
     cout << "Enter new Author: " << endl;
     cin.ignore();
     getline(cin, ns);
-    book.SetAuthor(ns);
+    it->SetAuthor(ns);
     cout << "Author changed from " << os << " to " << ns << endl;
 
   // Edit Title
   case 't':
-    os = book.GetTitle();
+    os = it->GetTitle();
     cout << "Enter new Title: " << endl;
     cin.ignore();
     getline(cin, ns);
-    book.SetTitle(ns);
+    it->SetTitle(ns);
     cout << "Title changed from " << os << " to " << ns << endl;
 
   // Edit ISBN
   case 's':
-    oi = book.GetISBN();
+    oi = it->GetISBN();
     cout << "Enter new ISBN: " << endl;
     cin >> ni;
-    book.SetISBN(ni);
+    it->SetISBN(ni);
     cout << "ISBN changed from " << oi << " to " << ni << endl;
 
   // Edit ID
   case 'd':
-    oi = book.GetId();
+    oi = it->GetId();
     cout << "Enter new ID: " << endl;
     cin >> ni;
-    book.SetId(ni);
+    it->id = ni;
     cout << "ID changed from " << oi << " to " << ni << endl;
 
   // Edit Cost
   case 'c':
-    of = book.GetCost();
+    of = it->GetCost();
     cout << "Enter new cost: " << endl;
     cin >> nf;
-    book.SetCost(nf);
+    it->SetCost(nf);
     cout << fixed << setprecision(2);
     cout << "Cost changed from $" << of << "to $" << nf << endl;
   }
 }
 
-void Books::DeleteBook(string name)
+void Books::DeleteBook(vector<Book>::iterator it)
 {
-  vector<Book>::iterator it = GetBookByName(name);
-  if (bookFound)
-  {
-    bookList.erase(it);
-    cout << "Book deleted." << endl;
-  }
-}
-void Books::DeleteBook(int id)
-{
-  vector<Book>::iterator it = GetBookByID(id);
   if (bookFound)
   {
     bookList.erase(it);
