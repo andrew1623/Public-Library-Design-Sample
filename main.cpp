@@ -1,9 +1,9 @@
 #include <iostream>
 #include <string>
 #include <cctype>
-// #include "patrons/Patrons.h"
-// #include "loans/Loans.h"
-// #include "books/Books.h"
+#include "Patrons.h"
+#include "Loans.h"
+#include "Books.h"
 
 using namespace std;
 
@@ -37,6 +37,7 @@ void menu()
          << "(p) Add a new patron" << endl
          << "(f) Pay fines" << endl
          << "(l) Report lost book" << endl
+         << "(v) View collections"
          << "(q) Quit\n"
          << endl;
     currChoice = getUserInput();
@@ -55,16 +56,20 @@ void menu()
       break;
     case 'l':
       break;
+    case 'v':
+      cout << "Select a collection to view." << endl;
     }
   }
 }
-
+void viewCollection()
+{
+}
 int main()
 {
 
-  //   Patrons patrons;
-  //   Loans loans;
-  //   Books books;
+  // Patrons patrons;
+  // Loans loans;
+  // Books books;
   // Need to load in books, loans, and patrons data file
   menu();
 
