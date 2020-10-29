@@ -5,12 +5,6 @@
 #include <string>
 
 using namespace std;
-struct status_t
-{
-  char current;
-  bool rechecked;
-};
-
 class Loan
 {
 private:
@@ -18,11 +12,10 @@ private:
   int bookID;
   int patronID;
   time_t dueDate;
-  status_t status;
+  char status;
 
 public:
-  Loan(int lID, int bID, int pID, time_t due, status_t stat);
-
+  Loan(int i);
   void SetLoanID(int i);
   int GetLoanID();
   void SetPatronID(int i);
@@ -31,8 +24,9 @@ public:
   int GetBookID();
   void SetDueDate(time_t t);
   time_t GetDueDate();
-  void SetStatus(char stat, bool recheck);
-  status_t GetStatus();
+  void SetStatus(char s);
+  char GetStatus();
+  void PrintDetails();
 };
 
 #endif

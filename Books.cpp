@@ -66,7 +66,7 @@ void Books::EditBook(vector<Book>::iterator it, char key)
     oi = it->GetId();
     cout << "Enter new ID: " << endl;
     cin >> ni;
-    it->SetId(ni) ;
+    it->SetId(ni);
     cout << "ID changed from " << oi << " to " << ni << endl;
 
   // Edit Cost
@@ -89,39 +89,29 @@ void Books::DeleteBook(vector<Book>::iterator it)
   }
 }
 
-vector<Book>::iterator Books::GetBookByID(int id)
+vector<Book>::iterator Books::FindBook(string name)
 {
+  string newName;
   vector<Book>::iterator it = bookList.begin();
-  while (it != bookList.end())
+
+  while (it != bookList.end() || newName.size() != 0)
   {
-    if (it->GetId() == id)
+    if (newName.size() != 0)
     {
-      cout << "Found book." << endl;
-      it->PrintBookDetails();
-      bookFound = true;
-      return it;
+      name = newName;
     }
-    else
-    {
-      cout << "Book not found." << endl;
-      bookFound = false;
-    }
-  }
-}
-vector<Book>::iterator Books::GetBookByName(string name)
-{
-  vector<Book>::iterator it = bookList.begin();
-  while (it != bookList.end())
-  {
     if (it->GetAuthor() == name)
     {
       cout << "Found book." << endl;
+      newName = "";
       it->PrintBookDetails();
       return it;
     }
     else
     {
-      cout << "Book not found." << endl;
+      cout << "Book not found." << endl
+           << "Please enter the name again: " << endl;
+      getline(cin, newName);
     }
   }
 }

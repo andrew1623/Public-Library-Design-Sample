@@ -23,8 +23,7 @@ public:
 
   // Search/Find Book in booksList
   // - returns an iterator
-  vector<Book>::iterator GetBookByID(int id);
-  vector<Book>::iterator GetBookByName(string name);
+  vector<Book>::iterator FindBook(string name);
 
   // Print booksList / Book details
   void PrintBookList();

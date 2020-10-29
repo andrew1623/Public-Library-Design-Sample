@@ -1,8 +1,26 @@
 #include <iostream>
+
 #include "Loan.h"
 
 using namespace std;
 
+Loan::Loan(int i)
+{
+  // c = checked out
+  // o = overdue
+  // r = rechecked out
+  status = 'o';
+  loanID = i;
+
+  // Create dueDate
+  time_t t;
+  struct tm *due;
+  time(&t);
+  due = localtime(&t);
+  due->tm_mday += 10;
+  // assign dueDate
+  dueDate = mktime(due);
+}
 void Loan::SetLoanID(int i)
 {
   this->loanID = i;
@@ -35,14 +53,34 @@ time_t Loan::GetDueDate()
 {
   return dueDate;
 }
-void Loan::SetStatus(char stat, bool recheck)
+void Loan::SetStatus(char s)
 {
-  status_t s;
-  s.current = stat;
-  s.rechecked = recheck;
   this->status = s;
 }
-status_t Loan::GetStatus()
+char Loan::GetStatus()
 {
   return status;
+}
+void Loan::PrintDetails()
+{
+  string statStr;
+  switch (status)
+  {
+  case 'c':
+    statStr = "Checked Out";
+    break;
+  case 'o':
+    statStr = "Overdue";
+    break;
+  case 'r':
+    statStr = "Rechecked out";
+    break;
+  }
+
+  cout << "\nLOAN DETAILS" << endl
+       << "Loan ID: " << loanID << endl
+       << "Patron ID: " << patronID << endl
+       << "Book ID: " << bookID << endl
+       << "Due: " << ctime(&dueDate) << endl
+       << "Status: " << statStr << endl;
 }
