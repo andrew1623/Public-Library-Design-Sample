@@ -4,17 +4,31 @@
 
 using namespace std;
 
-void Loans::CheckInBook(int bkID)
+Loans::Loans()
+{
+  count = 0;
+}
+void Loans::CheckInBook(Books bkList, Patrons pList)
 {
 }
-
-void Loans::CheckOutBook(int bkID)
+void Loans::CheckOutBook(Books bkList, Patrons pList)
 {
 }
-void SetLoanStatus(char stat, bool recheck);
-void PrintOverdue();
-void PrintLoansByPatron(string name);
-void PrintLoansByPatron(int id);
-void RecheckBook(int bkID);
-void EditLoan(int lnID);
-void ReportLost(int bkID);
+void Loans::SetLoanStatus(char stat, bool recheck)
+{
+}
+void Loans::PrintOverdue()
+{
+}
+void Loans::PrintLoansOfPatron(Patrons pList)
+{
+}
+void Loans::RecheckBook(Books bkList)
+{
+}
+void Loans::EditLoan(vector<Loan>::iterator it)
+{
+}
+void Loans::ReportLost(vector<Loan>::iterator it)
+{
+}

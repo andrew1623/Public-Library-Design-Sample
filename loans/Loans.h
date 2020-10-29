@@ -12,15 +12,14 @@ private:
 
 public:
   Loans();
-  void CheckInBook(int bkID);
-  void CheckOutBook(int bkID);
+  void CheckInBook(vector<Book>::iterator bit, vector<Patron>::iterator pit);
+  void CheckOutBook(vector<Book>::iterator bit, vector<Patron>::iterator pit);
   void SetLoanStatus(char stat, bool recheck);
   void PrintOverdue();
-  void PrintLoansByPatron(string name);
-  void PrintLoansByPatron(int id);
-  void RecheckBook(int bkID);
-  void EditLoan(int lnID);
-  void ReportLost(int bkID);
+  void PrintLoansOfPatron(vector<Patron>::iterator it);
+  void RecheckBook(vector<Book>::iterator it);
+  void EditLoan(vector<Book>::iterator it);
+  void ReportLost(vector<Book>::iterator it);
 };
 
 #endif
