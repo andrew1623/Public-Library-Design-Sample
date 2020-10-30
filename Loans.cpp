@@ -29,7 +29,7 @@ void Loans::CheckOutBook(Books bkList, Patrons pList)
   bookName = bk->GetTitle();
   patronName = p->GetName();
 
-  // check to see if patrons has 6 or more books
+  // check to see if patron has 6 or more books
   int bksOut = p->GetBooksOut();
   if (bksOut >= 6)
   {
@@ -86,13 +86,22 @@ void Loans::CheckInBook(Books bkList, Patrons pList)
       // check if overdue + update patron
       if (loanIt->GetStatus() == 'o')
       {
-        float fee, tmp;
-        tmp = patIt->GetBalance();
-        // ***
-        // TODO:calculate overdue fee
-
-        // fee =
-        // ***
+        // Retrieve current local time and due date
+        time_t due, now;
+        struct tm *nowLocal;
+        // assign due with due date
+        due = loanIt->GetDueDate();
+        // assign now with current local time
+        time(&now);
+        nowLocal = localtime(&now);
+        now = mktime(nowLocal);
+        // calculate days since due date
+        double daysPast = difftime(now, due) / (60 * 60 * 24);
+        // calculate fees
+        float fee = static_cast<float>(daysPast) * 0.25;
+        // calculate and update patron balance
+        float newBalance = patIt->GetBalance() + fee;
+        patIt->SetBalance(newBalance);
         patIt->SetBooksOut(patIt->GetBooksOut() - 1);
       }
       else

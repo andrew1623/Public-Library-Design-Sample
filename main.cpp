@@ -9,7 +9,6 @@ using namespace std;
 
 // TODO:
 // file storage system
-// fix overdue fee thing in loans
 // makefile
 // success
 
@@ -26,6 +25,40 @@ char getUserInput()
     cin >> input;
   }
   return input[0];
+}
+
+// payFines function. it used to take an amount to pay towards patron balance
+// but the library would rather forgive
+void libraryForgivenessProgram(Patrons p)
+{
+  string forgiven;
+  cout << "Enter patron's name: " << endl;
+  cin.ignore();
+  getline(cin, forgiven);
+  p.PayFines(forgiven);
+}
+
+void viewCollection(Patrons p, Loans l, Books b)
+{
+  char choice;
+  cout << "\nVIEW COLLECTION" << endl
+       << "Select a collection to view." << endl
+       << "(p) View patrons" << endl
+       << "(l) View overdue loans" << endl
+       << "(b) View books" << endl;
+  choice = getUserInput();
+  switch (choice)
+  {
+  case 'p':
+    p.PrintPatronList();
+    break;
+  case 'l':
+    l.PrintOverdue();
+    break;
+  case 'b':
+    b.PrintBookList();
+    break;
+  }
 }
 
 void menu(Patrons p, Loans l, Books b)
@@ -45,7 +78,6 @@ void menu(Patrons p, Loans l, Books b)
          << "(q) Quit\n"
          << endl;
     currChoice = getUserInput();
-    string indebted;
     switch (currChoice)
     {
     case 'o':
@@ -61,10 +93,7 @@ void menu(Patrons p, Loans l, Books b)
       p.AddPatron();
       break;
     case 'f':
-      cout << "Enter patron's name: " << endl;
-      cin.ignore();
-      getline(cin, indebted);
-      p.PayFines(indebted);
+      libraryForgivenessProgram(p);
       break;
     case 'l':
       l.ReportLost(b, p);
@@ -73,14 +102,12 @@ void menu(Patrons p, Loans l, Books b)
       l.RecheckBook(b, p);
       break;
     case 'v':
-      cout << "Select a collection to view." << endl;
+      viewCollection(p, l, b);
       break;
     }
   }
 }
-void viewCollection()
-{
-}
+
 int main()
 {
 
