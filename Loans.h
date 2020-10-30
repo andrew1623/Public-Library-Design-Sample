@@ -16,10 +16,9 @@ public:
   Loans();
   void CheckInBook(Books bkList, Patrons pList);
   void CheckOutBook(Books bkList, Patrons pList);
-  void SetLoanStatus(char stat, bool recheck);
   void PrintOverdue();
   void PrintLoansOfPatron(Patrons pList);
-  void RecheckBook(Books bkList);
+  void RecheckBook(Books bkList, Patrons pList);
   void ReportLost(Books bkList, Patrons pList);
 };
 

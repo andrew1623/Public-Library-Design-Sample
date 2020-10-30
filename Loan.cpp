@@ -21,6 +21,7 @@ Loan::Loan(int i)
   // assign dueDate
   dueDate = mktime(due);
 }
+
 void Loan::SetLoanID(int i)
 {
   this->loanID = i;
