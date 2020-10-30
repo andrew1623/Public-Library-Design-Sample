@@ -18,7 +18,6 @@ Loan::Loan(int i)
   time(&t);
   due = localtime(&t);
   due->tm_mday += 10;
-  // assign dueDate
   dueDate = mktime(due);
 }
 

@@ -112,7 +112,7 @@ void Loans::PrintOverdue()
   cout << "\nOVERDUE BOOKS" << endl;
   for (Loan loan : loansList)
   {
-    if (loan.GetStatus == 'o')
+    if (loan.GetStatus() == 'o')
     {
       loan.PrintDetails();
     }
@@ -150,7 +150,8 @@ void Loans::RecheckBook(Books bkList, Patrons pList)
   cin.ignore();
   getline(cin, bkName);
   // find matching book
-  vector<Book>::iterator bkIt = bkList.FindBook(findBName);
+  vector<Book>::iterator bkIt = bkList.FindBook(bkName);
+  vector<Loan>::iterator loanIt = loansList.begin();
   while (loanIt != loansList.end())
   {
     // This will find the right loan (pointer loanIt)
@@ -163,12 +164,28 @@ void Loans::RecheckBook(Books bkList, Patrons pList)
         // Find related patron (pointer patIt)
         int pID = loanIt->GetPatronID();
         vector<Patron>::iterator patIt = pList.FindPatron(pID);
+        // Retrieve current local time and due date
         time_t due, now;
+        struct tm *nowLocal;
+        // assign due with due date
         due = loanIt->GetDueDate();
+        // assign now with current local time
         time(&now);
-        double difference = difftime(now, due) / (60 * 60 * 24);
-        float newBalance = static_cast<float> difference + patIt->GetBalance();
+        nowLocal = localtime(&now);
+        now = mktime(nowLocal);
+        // calculate days since due date
+        double daysPast = difftime(now, due) / (60 * 60 * 24);
+        // calculate fees
+        float fee = static_cast<float>(daysPast) * 0.25;
+        // calculate and update patron balance
+        float newBalance = patIt->GetBalance() + fee;
         patIt->SetBalance(newBalance);
+        // modify nowLocal to become new due date
+        nowLocal->tm_mday += 10;
+        due = mktime(nowLocal);
+        // update loan dueDate and status
+        loanIt->SetDueDate(due);
+        loanIt->SetStatus('r');
       }
       // if rechecked already - print message
       else if (loanIt->GetStatus() == 'r')
@@ -176,8 +193,18 @@ void Loans::RecheckBook(Books bkList, Patrons pList)
         cout << "You may only recheck out a book once." << endl
              << "Please return the book." << endl;
       }
+      // if not overdue or rechecked - update duedate
+      // copy of the bottom of overdue condition
       else
       {
+        time_t t, dueDate;
+        struct tm *due;
+        time(&t);
+        due = localtime(&t);
+        due->tm_mday += 10;
+        dueDate = mktime(due);
+        loanIt->SetDueDate(dueDate);
+        loanIt->SetStatus('r');
       }
     }
   }
@@ -191,7 +218,8 @@ void Loans::ReportLost(Books bkList, Patrons pList)
   cin.ignore();
   getline(cin, bkName);
   // find matching book
-  vector<Book>::iterator bkIt = bkList.FindBook(findBName);
+  vector<Book>::iterator bkIt = bkList.FindBook(bkName);
+  vector<Loan>::iterator loanIt = loansList.begin();
   while (loanIt != loansList.end())
   {
     // This will find the right loan (pointer loanIt)
