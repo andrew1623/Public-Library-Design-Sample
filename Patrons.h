@@ -22,7 +22,7 @@ public:
   vector<Patron>::iterator FindPatron(string name);
   void PrintPatronList();
   void PrintPatron(vector<Patron>::iterator it);
-  void PayFines(vector<Patron>::iterator it, float amt);
+  void PayFines(string name);
 };
 
 #endif

@@ -16,11 +16,11 @@ void Loans::CheckOutBook(Books bkList, Patrons pList)
   int bkID, pID;
 
   // Get names of book and patron
-  cout << "\nCHECK BOOK IN " << endl
+  cout << "\nCHECK BOOK OUT" << endl
        << "Enter title of book: " << endl;
   cin.ignore();
   getline(cin, searchBName);
-  cout << "Enter name of patron" << endl;
+  cout << "Enter name of patron:" << endl;
   getline(cin, searchPName);
 
   // find book and patron
@@ -51,7 +51,7 @@ void Loans::CheckOutBook(Books bkList, Patrons pList)
 
   // update book status to 'o' (out)
   cout << "\nUPDATING BOOK STATUS" << endl;
-  bk->SetStatus('o');
+  bk->SetStatus('c');
 
   // update patron object
   cout << "\nUPDATING PATRON LOANS" << endl;

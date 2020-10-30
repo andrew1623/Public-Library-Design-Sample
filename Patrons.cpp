@@ -123,16 +123,11 @@ void Patrons::PrintPatron(vector<Patron>::iterator it)
 {
   it->PrintPatronDetails();
 }
-void Patrons::PayFines(vector<Patron>::iterator it, float amt)
+void Patrons::PayFines(string name)
 {
-  float currAmt = it->GetBalance();
-  float newAmt = currAmt - amt;
-  if (newAmt <= 0)
-  {
-    it->SetBalance(0);
-  }
-  else
-  {
-    it->SetBalance(newAmt);
-  }
+  vector<Patron>::iterator it = FindPatron(name);
+  it->SetBalance(0);
+  cout << "\nTHE LIBRARY HAS FORGIVEN" << endl
+       << "The library forgives you.\nEmail me if you really want to pay fees." << endl
+       << it->GetName() << "'s current balance is now " << it->GetBalance() << endl;
 }

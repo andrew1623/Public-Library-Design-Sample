@@ -2,6 +2,11 @@
 #include <iomanip>
 #include "Books.h"
 
+Books::Books()
+{
+  count = 0;
+  bookFound = false;
+}
 void Books::AddBook()
 {
   string auth, title, status;
@@ -100,9 +105,9 @@ vector<Book>::iterator Books::FindBook(string name)
     {
       name = newName;
     }
-    if (it->GetAuthor() == name)
+    if (it->GetTitle() == name)
     {
-      cout << "Found book." << endl;
+      cout << "\nFound book." << endl;
       newName = "";
       it->PrintBookDetails();
       return it;

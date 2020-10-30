@@ -25,7 +25,7 @@ char getUserInput()
   }
 }
 
-void menu()
+void menu(Patrons p, Loans l, Books b)
 {
   char currChoice;
   while (currChoice != 'q')
@@ -33,31 +33,45 @@ void menu()
     cout << "\nMENU" << endl
          << "(o) Check out a Book" << endl
          << "(i) Check in a book" << endl
+         << "(r) Recheck out a book" << endl
          << "(b) Add a book to the Library" << endl
          << "(p) Add a new patron" << endl
          << "(f) Pay fines" << endl
          << "(l) Report lost book" << endl
-         << "(v) View collections"
+         << "(v) View collections" << endl
          << "(q) Quit\n"
          << endl;
     currChoice = getUserInput();
-
+    string indebted;
     switch (currChoice)
     {
     case 'o':
+      l.CheckOutBook(b, p);
       break;
     case 'i':
+      l.CheckOutBook(b, p);
       break;
     case 'b':
+      b.AddBook();
       break;
     case 'p':
+      p.AddPatron();
       break;
     case 'f':
+      cout << "Enter patron's name: " << endl;
+      cin.ignore();
+      getline(cin, indebted);
+      p.PayFines(indebted);
       break;
     case 'l':
+      l.ReportLost(b, p);
+      break;
+    case 'r':
+      l.RecheckBook(b, p);
       break;
     case 'v':
       cout << "Select a collection to view." << endl;
+      break;
     }
   }
 }
@@ -67,11 +81,11 @@ void viewCollection()
 int main()
 {
 
-  // Patrons patrons;
-  // Loans loans;
-  // Books books;
+  Patrons patrons;
+  Loans loans;
+  Books books;
   // Need to load in books, loans, and patrons data file
-  menu();
+  menu(patrons, loans, books);
 
   return 0;
 }

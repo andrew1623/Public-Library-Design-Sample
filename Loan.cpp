@@ -9,7 +9,7 @@ Loan::Loan(int i)
   // c = checked out
   // o = overdue
   // r = rechecked out
-  status = 'o';
+  status = 'c';
   loanID = i;
 
   // Create dueDate
@@ -81,6 +81,6 @@ void Loan::PrintDetails()
        << "Loan ID: " << loanID << endl
        << "Patron ID: " << patronID << endl
        << "Book ID: " << bookID << endl
-       << "Due: " << ctime(&dueDate) << endl
-       << "Status: " << statStr << endl;
+       << "Status: " << statStr << endl
+       << "Due: " << ctime(&dueDate) << endl;
 }

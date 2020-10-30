@@ -10,9 +10,9 @@ using namespace std;
 class Books
 {
 private:
-  int count = 0;
+  int count;
   vector<Book> bookList;
-  bool bookFound = false;
+  bool bookFound;
 
 public:
   Books();
