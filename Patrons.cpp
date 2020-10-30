@@ -81,7 +81,7 @@ vector<Patron>::iterator Patrons::FindPatron(int pID)
   {
     if (it->GetID() == pID)
     {
-      cout << "Found patron." << endl;
+      cout << "\nFound patron." << endl;
       patronFound = true;
       return it;
     }
@@ -99,7 +99,7 @@ vector<Patron>::iterator Patrons::FindPatron(string name)
   {
     if (it->GetName() == name)
     {
-      cout << "Found patron." << endl;
+      cout << "\nFound patron." << endl;
       it->PrintPatronDetails();
       patronFound = true;
       return it;
