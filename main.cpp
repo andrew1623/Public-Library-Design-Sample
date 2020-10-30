@@ -7,6 +7,12 @@
 
 using namespace std;
 
+// TODO:
+// file storage system
+// fix overdue fee thing in loans
+// makefile
+// success
+
 char getUserInput()
 {
   string input;
@@ -14,15 +20,12 @@ char getUserInput()
   cin >> input;
 
   //input validation
-  if (!isalpha(input[0]) || input.size() > 1)
+  while (!isalpha(input[0]) || input.size() > 1)
   {
     cout << "\nSelection must be a single character.\nEnter a selection: " << endl;
     cin >> input;
   }
-  else
-  {
-    return input[0];
-  }
+  return input[0];
 }
 
 void menu(Patrons p, Loans l, Books b)

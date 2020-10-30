@@ -32,6 +32,7 @@ void Patrons::AddPatron()
   getline(cin, name);
 
   Patron p = Patron(i, name);
+  count++;
   patronsList.push_back(p);
 }
 void Patrons::EditPatron(vector<Patron>::iterator it, char key)
